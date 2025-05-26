@@ -1,12 +1,17 @@
 import streamlit as st
-import pandas as pd
+import time
 
-# 서울 명소 위치
-data = pd.DataFrame({
-    'lat': [37.5665, 37.5700, 37.5796],
-    'lon': [126.9780, 126.9920, 126.9770],
-    'place': ['시청', '동대문', '경복궁']
-})
+st.header("오재윤")
 
-st.map(data)
+with st.spinner("전체 작업 진행 중..."):
+    progress = st.progress(0)
+    status_text = st.empty()  # 텍스트 덮어쓰기 용 공간 확보
+
+    for i in range(5):
+        status_text.write(f"🔧 Step {i+1}/5: 데이터 준비 중...")
+        time.sleep(1)
+        progress.progress((i + 1) * 20)
+
+st.success("처리가 모두 끝났습니다!")
+
 
